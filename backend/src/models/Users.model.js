@@ -42,5 +42,14 @@ const addictSchema = new mongoose.Schema({
     }
 }, {timestamps: true})
 
+const familyschema = new mongoose.Schema({
+    adict: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Addict",
+        required: true
+    },
+})
+
 const User = mongoose.model('User', userschema)
 const Addict = User.discriminator('Addict', addictSchema)
+const Family = User.discriminator('Family', familyschema); 
