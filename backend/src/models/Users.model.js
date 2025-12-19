@@ -32,13 +32,13 @@ const userschema = new mongoose.Schema({
 }, {timestamps: true, discriminatorKey: 'role'});
 
 userschema.pre('save', async function () {
-  if (!this.isModified('password')) return;  // important!
+  if (!this.isModified('password')) return;
 
   try {
     const hashed = await bcrypt.hash(this.password, 10);
     this.password = hashed;
   } catch (err) {
-    throw err;  // Mongoose will catch and abort save
+    throw err;
   }
 });
 

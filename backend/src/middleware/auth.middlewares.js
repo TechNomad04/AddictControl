@@ -21,8 +21,6 @@ const login = async (req, res) => {
         await addict.save()
 
         const userData = addict.toObject();
-        delete userData.password;
-        delete userData.refreshtoken;
 
         return res.status(200).json({status: true, accesstoken, userData});
     } catch (err) {
