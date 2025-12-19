@@ -4,6 +4,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const testroutes = require('./routes/test.routes');
+const authroutes = require('./routes/auth.routes')
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json({ limit: '10kb' }));
 app.use(helmet({ referrerPolicy: { policy: 'no-referrer' } }));
 
 app.use('/test', testroutes);
+app.use('/', authroutes)
 
 const DB_URI = process.env.MONGO_URI;
 

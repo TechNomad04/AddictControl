@@ -4,9 +4,6 @@ const {scoreanswer} = require('../utils/testcheck.utils')
 
 const givetest = async(req, res) => {
     try {
-        // const alcohol_id = req.body.id;
-        // const questest = new Test({alcohol_id});
-        // await questest.save()
         const test = await generate();
         if(!test.questions || test.questions.length !== 5)
             return res.status(401).json({status:false, message:"Gemini error"})
