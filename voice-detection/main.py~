@@ -44,24 +44,10 @@ def prediction(audio_path):
 
 app = Flask(__name__)
 
-@app.route('/predict', methods=["POST"]):
+@app.route('/')
+@app.route('/predict'):
     if "audio" not in request.files:
         #throw an error
 
     audio_file = request.files["audio"]
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        audio_path = tmp.name
-        audio_file.save(audio_path)
-
-    try:
-        prediction_result = prediction(audio_path)
-        result = prediction_result.tolist()
-
-        return jsonify({
-            "prediction":result
-            })
-
-    finally:
-        os.remove(audio_path)
-
 
