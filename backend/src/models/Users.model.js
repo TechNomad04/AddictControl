@@ -85,5 +85,6 @@ const Doctor = User.discriminator('Doctor', doctorSchema);
 module.exports = {
     User,
     Addict,
-    Family
+    Family,
+    Doctor
 }

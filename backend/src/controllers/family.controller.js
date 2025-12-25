@@ -1,4 +1,4 @@
-const { Doctor, Addict, Family} = require('../model/Users.model.js');
+const { Doctor, Addict, Family} = require('../models/Users.model.js');
 
 const registration_family = async(req, res)=>{
 	const user_id = req.user._id;
@@ -9,7 +9,7 @@ const registration_family = async(req, res)=>{
 		if(!addict_email || !member_phone_number || !password || !name || !member_email){
 			return res.status(400).json({
 				success: false,
-				message: "Kindly fill all the fields
+				message: "Kindly fill all the fields"
 			});
 		}
 
