@@ -13,10 +13,10 @@ const multi_purpose_login = async(req, res)=>{
 			query = {$or: [{phone: phone}, {email:email}]};
 		}
 		else if(email){
-			query = {email:email}
+			query = {email: email};
 		}
 		else{
-			query = {phone:phone}
+			query = {phone:phone};
 		}
 
 		const user = await User.findOne(query).lean();
@@ -29,16 +29,19 @@ const multi_purpose_login = async(req, res)=>{
 
 		return res.status(200).json({
 			success: true,
-			message: "logged in",
+			message: "Logged in",
 			role: role
 		});
 	}
 	catch(err){
 		console.log(err);
-		return res.status(500).json({success: false, message: "Internal error"});
+		return res.status(500).json({success: false, message: "Internal server error"});
 	}
 }
 
 module.exports = {
-    multi_purpose_login
+	multi_purpose_login
 }
+
+
+
