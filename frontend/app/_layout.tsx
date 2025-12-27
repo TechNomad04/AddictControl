@@ -5,6 +5,7 @@ import { useAuthStore } from "../store/authStore";
 import { useEffect, useRef } from "react";
 import { ActivityIndicator, View } from "react-native";
 import SafeScreen from "@/components/SafeScreen";
+import FontLoader from "@/components/FontLoader";
 
 export default function RootLayout() {
   const router = useRouter();
@@ -18,37 +19,43 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    if (isCheckingAuth) return;
-    if (hasRedirected.current) return;
+  if (isCheckingAuth) return;
 
-    const rootSegment = segments[0];
+  // Reset redirect flag if auth state changed
+  if (!token || !user) {
+    hasRedirected.current = false;
+  }
 
-    if (!token || !user) {
-      if (rootSegment !== "(auth)") {
-        hasRedirected.current = true;
-        router.replace("/(auth)");
-      }
-      return;
-    }
+  if (hasRedirected.current) return;
 
-    if (user.role === "doctor") {
+  const rootSegment = segments[0];
+
+  if (!token || !user) {
+    if (rootSegment !== "(auth)") {
       hasRedirected.current = true;
-      router.replace("/doctor");
-      return;
+      router.replace("/(auth)"); // make sure login screen is first
     }
+    return;
+  }
 
-    if (user.role === "family") {
-      hasRedirected.current = true;
-      router.replace("/family");
-      return;
-    }
+  // Role-based routing
+  if (user.role === "doctor") {
+    hasRedirected.current = true;
+    router.replace("/doctor");
+    return;
+  }
 
-    
-    if (rootSegment !== "(tabs)") {
-      hasRedirected.current = true;
-      router.replace("/(tabs)/test");
-    }
-  }, [token, user, isCheckingAuth]);
+  if (user.role === "family") {
+    hasRedirected.current = true;
+    router.replace("/family");
+    return;
+  }
+
+  if (rootSegment !== "(tabs)") {
+    hasRedirected.current = true;
+    router.replace("/(tabs)/test");
+  }
+}, [token, user, isCheckingAuth, segments]);
 
   if (isCheckingAuth) {
     return (
@@ -59,6 +66,7 @@ export default function RootLayout() {
   }
 
   return (
+    <FontLoader>
     <SafeAreaProvider>
       <SafeScreen>
         <Stack screenOptions={{ headerShown: false }}>
@@ -70,5 +78,6 @@ export default function RootLayout() {
       </SafeScreen>
       <StatusBar style="dark" />
     </SafeAreaProvider>
+    </FontLoader>
   );
 }

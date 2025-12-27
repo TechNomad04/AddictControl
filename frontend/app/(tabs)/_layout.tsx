@@ -6,12 +6,9 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#209eaf",
+        tabBarActiveTintColor: "#4de8fdff",
         tabBarInactiveTintColor: "gray",
-
-        // 🎯 TAB SWITCH ANIMATION
         animation: "shift",
-        animationDuration: 300,
       }}
     >
       <Tabs.Screen

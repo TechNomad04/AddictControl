@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   },
   topic:{
     fontSize: 32,
-    fontWeight: "700",
-    fontFamily:"JenWagnerCo.-VersaillesRegular.ttf",
-    color: COLORS.textPrimary,
+    fontWeight: "100",
+    fontFamily:"JenWagner",
+    color:"#71b9c8ff",
     marginBottom: 50,
     textAlign: "center",
 
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   button: {
-    backgroundColor: COLORS.primary,
+    
     borderRadius: 12,
     height: 50,
     justifyContent: "center",
