@@ -79,7 +79,7 @@ export default function QuestionCard({
   }}
       >
         <LinearGradient
-    colors={isDisabled ? ['#b3e5fc', '#a3dcf7ff'] : ['#52d4f5', '#4ee3f7ff']}
+    colors={isDisabled ? ['#b3e5fc', '#a3dcf7ff'] : ['#52d4f5', '#1daec2ff']}
     start={[0, 0]}
     end={[1, 1]}
     style={{ padding: 15, justifyContent: 'center', alignItems: 'center' }}

@@ -111,7 +111,7 @@ const fetchPrompt = async () => {
         Read Aloud
       </Text>
 
-      {/* 🔹 Dynamic Prompt */}
+      {/*  Dynamic Prompt */}
       <Text
         style={{
           fontSize: 16,
@@ -126,7 +126,7 @@ const fetchPrompt = async () => {
       <TouchableOpacity
         onPress={recording ? stopRecording : startRecording}
         style={{
-          backgroundColor: recording ? '#dc2626' : '#00bcd4',
+          backgroundColor: recording ? '#dc2626' : '#1daec2ff',
           padding: 14,
           borderRadius: 10,
         }}
@@ -142,7 +142,7 @@ const fetchPrompt = async () => {
           style={{ marginTop: 20, borderRadius: 10, overflow: 'hidden' }}
         >
           <LinearGradient
-            colors={['#52d4f5', '#4ee3f7']}
+            colors={['#52d4f5', '#1daec2ff']}
             start={[0, 0]}
             end={[1, 1]}
             style={{ padding: 15, alignItems: 'center' }}
