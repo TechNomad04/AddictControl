@@ -37,7 +37,7 @@ export default function Profile() {
       >
        
         <LinearGradient
-          colors={['#52d4f5', '#4ee3f7']}
+          colors={['#52d4f5', '#1daec2ff']}
           style={styles.header}
         >
           <Image
@@ -55,7 +55,7 @@ export default function Profile() {
         </LinearGradient>
 
       <LinearGradient
-      colors={['#52d4f5', '#4ee3f7']}
+      colors={['#52d4f5', '#1daec2ff']}
       style={styles.card}>
 
     
@@ -93,7 +93,7 @@ export default function Profile() {
         </View>
 
         <LinearGradient
-          colors={['#52d4f5', '#4ee3f7']}
+          colors={['#52d4f5', '#1daec2ff']}
           style={styles.scoreCard}
         >
           <Text style={styles.moodText}>Today: 82%</Text>

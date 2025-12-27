@@ -156,7 +156,7 @@ export default function TestScreen() {
     }}
   >
     <LinearGradient
-      colors={['#52d4f5', '#4ee3f7']}
+      colors={['#52d4f5', '#1daec2ff']}
       start={[0, 0]}
       end={[1, 1]}
       style={{
