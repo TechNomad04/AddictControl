@@ -167,12 +167,12 @@ const styles = StyleSheet.create({
 },
 
 monthDay: {
-  width: '14.28%', // 7 columns
+  width: '14.28%', 
   aspectRatio: 1,
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 12,
-  backgroundColor: 'rgba(255,255,255,0.2)', // same as day
+  backgroundColor: 'rgba(255,255,255,0.2)', 
   marginBottom: 8,
 },
 
