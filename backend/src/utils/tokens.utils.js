@@ -59,7 +59,7 @@ const refresh = async(req, res)=>{
 		const role = decoded.role;
 
 		const newAccessToken = jwt.sign({id: id, role: role}, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '15m'});
-		res.json({newAccessToken});
+		return res.status(200).json({success: true, accessToken:newAccessToken} );
 	}
 	catch(err){
 		return res.status(403).json({success: false, message: "Login again, token expired"});

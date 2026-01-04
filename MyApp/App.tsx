@@ -20,11 +20,13 @@ export default function App() {
         if(!refreshToken) {
           return "Login";
         } else {
-          const response = await axios.post(`http://${ip}:5000/checklogin`, {
+          const response = await axios.post(`http://${ip}:5000/refresh`, {
             refreshToken 
           })
 
           if(response.data.success) {
+            AsyncStorage.setItem('accessToken', response.data.accessToken);
+            const role = AsyncStorage.getItem('role');
             //navigation based on user roles (to be done when other pages are added)
             return "SomeOtherPage";
           }
