@@ -1,4 +1,4 @@
-const fs = require('fs');
+/*const fs = require('fs');
 const FormData = require('form-data');
 const axios = require('axios');
 const { Test } = require('../models/Test.model.js');
@@ -6,7 +6,6 @@ const s3 = require('../s3.js');
 
 const process_audio = async(req, res)=>{
 	try{
-		const form = new FormData();
 		const user_id = req.user_id;
 
 		const s3FileURL = req.file.location;
@@ -51,7 +50,7 @@ const process_audio = async(req, res)=>{
 
 module.exports = {
 	process_audio
-}
+}*/
 
 
 

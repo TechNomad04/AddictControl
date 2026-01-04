@@ -25,8 +25,6 @@ export default function App() {
           })
 
           if(response.data.success) {
-            AsyncStorage.setItem('accessToken', response.data.accessToken);
-            const role = AsyncStorage.getItem('role');
             //navigation based on user roles (to be done when other pages are added)
             return "SomeOtherPage";
           }

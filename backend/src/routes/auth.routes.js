@@ -9,5 +9,6 @@ router.post('/login', multi_purpose_login);
 router.post('/refresh', refresh);
 router.get('/profile_a', verifyJWT, profile_addict);
 router.get('/profile_b', verifyJWT, profile_member);
+router.post('/checklogin', checklogin);
 
 module.exports = router
