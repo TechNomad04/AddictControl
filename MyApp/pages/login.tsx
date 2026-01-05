@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ip } from "../creds";
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import apiClient from "../utils/intercept";
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const LoginPage = () => {
         try {
             event.preventDefault()
 
-            const response = await axios.post(`http://${ip}:5000/login`, {
+            const response = await apiClient.post(`http://${ip}:5000/login`, {
                 phone: formData.phone,
                 email: formData.email,
                 password: formData.password
