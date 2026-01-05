@@ -11,7 +11,7 @@ const make_object = (user)=>{
 const profile_addict = async(req, res)=>{
 	const user_id = req.user_id;
 	try{
-		const user = await Addict.findById(user_id);
+		const user = await Addict.findById(user_id.toString());
 		const basic_info = make_object(user);
 		return res.status(200).json({
 			basic_info,
@@ -29,7 +29,7 @@ const profile_addict = async(req, res)=>{
 const profile_member = async(req, res)=>{
 	const user_id = req.user_id;
 	try{
-		const user = await Family.findById(user_id);
+		const user = await Family.findById(user_id.toString());
 		const basic_info = make_object(user);
 		return res.status(200).json({
 			basic_info,
@@ -44,7 +44,31 @@ const profile_member = async(req, res)=>{
 	}
 }
 
+const logout = async(req, res)=>{
+	try{
+		const user_id = req.user_id;
+		const user = await User.findById(user_id.toString());
+		user.refreshToken = "";
+		await user.save();
+
+		return res.status(200).json({
+			success: true,
+			message: 'User logged out'
+		});
+	}
+	catch(err){
+		console.log(err);
+		return res.status(500).json({
+			success: false,
+			message: "Error logging out"
+		});
+	}
+}
+
+	
+
 module.exports = {
 	profile_addict,
-	profile_member
+	profile_member,
+	logout
 }
