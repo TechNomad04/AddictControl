@@ -1,0 +1,33 @@
+import { useState, useEffect } from "react";
+import { View, TextInput, Text } from "react-native";
+import axios from "axios";
+
+const Quotes = [
+	"Asking for help is really the beginning of any sort of recovery process",
+	"Remember just because you hit bottom doesn’t mean you have to stay there",
+	"All the suffering, stress, and addiction comes from not realizing you already are what you are looking for.",
+	"Addiction is an adaptation. It’s not you–it’s the cage you live in.",
+	"Don't pick up a drink or drug, one day at a time. It actually is simple, but it isn't easy: it requires incredible support and fastidious structiurng."
+	"First you take a drink, then the drink takes a drink, then the drink takes you",
+	"Sobriety is a journey, not a destination",
+	"Lighten up on yourself. No one is perfect. Gently accept your humanness",
+];
+
+const getRandom = (min:number, max:number)=>{
+	let random = Math.floor(Math.random()*(max-min+1))+min;
+	return random;
+}
+
+const AddictHome = ()=>{
+	const [quote, setQuote] = useState('We appreciate you on taking a step forward!');
+	
+	useEffect(()=>{
+		const max:number = Quotes.length;
+		const min: number = 0;
+
+		const random = getRandom(min, max);
+
+		setQuote(Quotes[random]);
+	}, []);
+}
+
