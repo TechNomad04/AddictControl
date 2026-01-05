@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import {View, TextInput, Alert, Text, Button} from "react-native";
+import {View, TextInput, Alert, Text} from "react-native";
 import axios from "axios";
 import validator from "validator";
 
-export default function RegistrationFamilyMember(){
-	const [formData, setFormData] = useState({
+function RegistrationFamilyMember(){
+	const [formData, setFormData] = useState<{
+		email: string;
+		password: string;
+		name: string;
+		addict_email: string;}>
+	({
 		email: '',
 		password: '',
 		phone: '',
@@ -12,12 +17,12 @@ export default function RegistrationFamilyMember(){
 		addict_email: ''
 	});
 
-	const [error, setError] = useState('');
-	const [repassword, setRepassword] = useState('');
-	const [errorType, setErrorType] = useState('');
+	const [error, setError] = useState<string>('');
+	const [repassword, setRepassword] = useState<string>('');
+	const [errorType, setErrorType] = useState<string>('');
 
 
-	const handleInputChange = (name: any, value: any)=>{ // react native has no dom, a fun fact that truly isnt fun
+	const handleInputChange = (name: string, value: any)=>{ // react native has no dom, a fun fact that truly isnt fun
 		setFormData(prev=>({
 			...prev,
 			[name]: value
@@ -34,7 +39,7 @@ export default function RegistrationFamilyMember(){
 
 			if(!validator.isEmail(formData.addict_email)){
 				setError('Connected member email not valid');
-				setErrorType('coreMail');
+				setErrorType('coreMail'); 
 				return;
 			}
 
