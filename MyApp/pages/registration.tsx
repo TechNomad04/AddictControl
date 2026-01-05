@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import {View, TextInput, Alert, Text} from "react-native";
+import {View, TextInput, Alert, Text, Button} from "react-native";
 import axios from "axios";
 import validator from "validator";
 
-function RegistrationFamilyMember(){
+export default function RegistrationFamilyMember(){
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -17,7 +17,7 @@ function RegistrationFamilyMember(){
 	const [errorType, setErrorType] = useState('');
 
 
-	const handleInputChange = (name, value)=>{ // react native has no dom, a fun fact that truly isnt fun
+	const handleInputChange = (name: any, value: any)=>{ // react native has no dom, a fun fact that truly isnt fun
 		setFormData(prev=>({
 			...prev,
 			[name]: value
@@ -88,7 +88,7 @@ function RegistrationFamilyMember(){
 				)}
 
 				<TextInput
-					placeholder="phone",
+					placeholder="phone"
 					onChangeText = {value=>handleInputChange("phone", value)}
 					value={formData.phone}
 					keyboardType="numeric"
