@@ -46,7 +46,11 @@ const LoginPage = ({navigation}: any) => {
       await AsyncStorage.setItem("role", response.data.role);
 
       console.log("Login success:", response.data);
-      // navigation will be added later
+      const role = response.data.role
+      if(role.toLowerCase() === 'addict')
+        navigation.navigate('AddictH')
+      else if(role.toLowerCase() === 'family')
+        navigation.navigate('FamH')
 
     } catch (err:any) {
       console.log("Login failed:", err.response?.data || err.message);

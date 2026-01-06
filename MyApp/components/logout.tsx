@@ -3,15 +3,18 @@ import apiClient from "../utils/intercept";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ip } from "../creds";
 
-const Logoutcomp = () => {
+const Logoutcomp = ({navigation}:any) => {
 
     const handlelogout = async() => {
         try {
             const response = await apiClient.post(`http://${ip}:5000/logout`)
             console.log(response.data)
-            await AsyncStorage.multiRemove(['refreshToken', 'accessToken'])
+            await AsyncStorage.multiRemove(['refreshToken', 'accessToken', 'role'])
+            navigation.navigate('Login')
         } catch (err) {
             console.log(err)
+            await AsyncStorage.multiRemove(['refreshToken', 'accessToken', 'role'])
+            navigation.navigate('Login')
         }
     }
 
