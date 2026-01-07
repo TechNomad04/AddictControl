@@ -20,6 +20,8 @@ const getRandom = (min:number, max:number)=>{
 
 const AddictHome = ()=>{
 	const [quote, setQuote] = useState('We appreciate you on taking a step forward!');
+	const [limit, setLimit] = useState(10);
+
 	
 	useEffect(()=>{
 		const max:number = Quotes.length;
@@ -29,5 +31,45 @@ const AddictHome = ()=>{
 
 		setQuote(Quotes[random]);
 	}, []);
+
+	const [testResults, setTestResults] = useState([]);
+
+	useEffect(()=>{
+		const loadData = async()=>{
+			try{
+				const response = await axios.get('/see_results', {
+					params:{
+						limit: limit
+					}
+				});
+
+				setTestResults(response.data.test_results);
+
+			} 
+			catch(err){
+				console.log(err); // add some ui there
+			}
+		}
+
+		loadData();
+	}, [limit]);
+
+	return (
+		<View>
+			<View>
+				<Text>{quote}</Text>
+			</View>
+			
+			<View>
+				{
+					testResults.map(test=>(
+						<View>
+							<Text>{test.overall_score}</Text>
+						</View>
+					))
+				}
+			</View>
+		</View>
+
 }
 
