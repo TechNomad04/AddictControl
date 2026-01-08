@@ -42,21 +42,27 @@ const getUserFromToken = async(token)=>{
 }
 
 const refresh = async(req, res)=>{
+	console.log('inside refresh')
 	const { token } = req.body;
+	console.log('refresh token', token)
 	if(!token) return res.status(401).json({message: "Refresh token expired"});
 	let decoded;
 	try{
 		decoded = jwt.verify(token, process.env.REFRESH_ACCESS_TOKEN);
 		const user = await User.findById(decoded.id.toString());
+		console.log(user)
 		if(!user || !user.refreshtoken){
 			return res.status(403).json({success: false, message: "Invalid session"});
 		}
+		console.log('find user')
 		const isMatch = await bcrypt.compare(token, user.refreshtoken);
 		if(!isMatch){
 			return res.status(403).json({success: false, message: "Invalid token"});
 		}
 		const id = decoded.id;
 		const role = decoded.role;
+
+		console.log('inside refresh', role)
 
 		const newAccessToken = jwt.sign({id: id, role: role}, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '15m'});
 		res.json({newAccessToken});

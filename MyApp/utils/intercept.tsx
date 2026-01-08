@@ -12,6 +12,7 @@ apiClient.interceptors.request.use(async (config)=>{
 		const token = await AsyncStorage.getItem('accessToken');
 		if(token){
 			config.headers = config.headers || {};
+			
 			config.headers.Authorization = `Bearer ${token}`;
 		}
 		return config;

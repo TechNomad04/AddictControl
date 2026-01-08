@@ -9,12 +9,12 @@ const testroutes = require('./routes/test.routes');
 const authroutes = require('./routes/auth.routes');
 
 const callsroutes = require('./routes/calls.routes');
+const userroutes = require('./routes/user.routes.js')
 
 app.use('/test', testroutes);
 app.use('/', authroutes);
 app.use('/calls', callsroutes);
-
-
+app.use('/users', userroutes)
 
 const httpServer = createServer(app);
 const io = initSockets(httpServer, 60000, 25000);

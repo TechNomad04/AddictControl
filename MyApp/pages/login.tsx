@@ -35,6 +35,7 @@ const LoginPage = ({navigation}: any) => {
 
   const handleSubmit = async () => {
     try {
+      await AsyncStorage.clear()
       const response = await apiClient.post("/login", {
         phone: formData.phone,
         email: formData.email,

@@ -65,8 +65,32 @@ const logout = async(req, res)=>{
 	}
 }
 
+const addict_data = async(req, res) => {
+	try {
+		const user_id = req.user_id;
+		console.log('user id',user_id);
+		const addict_mail = await Family.findById(user_id.toString())
+		console.log('addict', addict_mail.addict_member_email)
+
+		if(!addict_mail || !user_id)
+			return res.status(404).json({status: false, message: "User not found"})
+
+		const addict = await Addict.findOne({email: addict_mail.addict_member_email})
+		if(!addict)
+			return res.status(404).json({status: false, message: "User not found"})
+
+		
+
+		return res.status(200).json({status: true, email: addict.email, phone: addict.phone, sobriety: addict.sobriety, name: addict.name, age: addict.age, language: addict.language})
+	} catch (err) {
+		console.log(err)
+		return res.status(500).json({status: false, message: "Internal server error"})
+	}
+}
+
 module.exports = {
 	profile_addict,
 	profile_member,
-	logout
+	logout,
+	addict_data
 }
